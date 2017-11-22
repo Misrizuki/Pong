@@ -11,6 +11,8 @@ public class Ball extends Actor
     private static final int SIZE = 20;
     private static int velocity = 0;
     
+    private Score getPoint;
+    
     public Ball()
     {
       GreenfootImage ballImage = new GreenfootImage(SIZE, SIZE); 
@@ -19,6 +21,7 @@ public class Ball extends Actor
       ballImage.fillOval(0, 0,SIZE, SIZE );
       
       setImage( ballImage);
+      turn(Greenfoot.getRandomNumber(360));
     }
     
     /**
@@ -30,9 +33,11 @@ public class Ball extends Actor
         // Add your action code here.
         PlayField world = (PlayField)getWorld();
         
-        checkCollision();
-        move( velocity );
-        
+        if(world.getStarted() == true)
+        { 
+          checkCollision();
+          move( velocity );
+        }
     }
     
     private void checkCollision()
@@ -62,18 +67,14 @@ public class Ball extends Actor
        if(getX()<= 10)
        {
           getPoint = (Score)getWorld().getObjects(Score.class).get(1);
-          
           getPoint.countScore();
-          
-          world.Reset();
+          world.reset();
        }
        else if(getX() >= 790)
        {
           getPoint = (Score)getWorld().getObjects(Score.class).get(0);
-          
           getPoint.countScore();
-          
-          world.Reset();   
+          world.reset();   
        }
        
     }

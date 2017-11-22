@@ -29,7 +29,13 @@ public class Score extends Actor
     
     public void countScore()
     {
-        
+       playerScore += 1;
+       scoreChanged = true;
+    }
+    
+    public int getScore()
+    {
+      return playerScore;  
     }
     
     public Score(boolean left)

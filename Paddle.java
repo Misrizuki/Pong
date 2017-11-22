@@ -21,6 +21,7 @@ public class Paddle extends Actor
     public void act() 
     {
         // Add your action code here.
+        checkKeyPress();
     }
     
     public Paddle(boolean isLeft)
@@ -31,29 +32,30 @@ public class Paddle extends Actor
       {
         upKey = "w";
         downKey = "s";
-        paddleImage.setColor(Color.GREEN);
+        paddleImage.setColor(Color.MAGENTA);
       }
-      else
+      else 
       {
         upKey = "up";
         downKey = "down";
-        paddleImage.setColor(Color.RED);  
+        paddleImage.setColor(Color.CYAN);  
       }
       
       paddleImage.fillRect(0, 0, WIDTH, HEIGHT);
-      checkKeyPress();
+      setImage( paddleImage);
     }
     
     private void checkKeyPress()
     {
+        
       if ( Greenfoot.isKeyDown (upKey) )
       {
-        setLocation(getX(),getY()-4);  
+        setLocation(getX(),getY()- 4);  
       }
       
       if ( Greenfoot.isKeyDown (downKey) )
       {
-        setLocation(getX(),getY()+4);  
+        setLocation(getX(),getY()+ 4);  
       }
       
     }
